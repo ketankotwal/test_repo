@@ -40,13 +40,6 @@ ocsp_request_file_contents = open('ocsp_request.der', 'r').read()
 ocsp_url = 'http://clients1.google.com/ocsp'
 ocsp_url_citi = 'http://sr.symcd.com'
 
-#conn = httplib.HTTPConnection(ocsp_url)
-#conn.request("GET", ocsp_request_file_contents)
-#resp = conn.getresponse()
-#print resp
-#print resp.status
-#print resp.read()
-
 
 import requests
 
