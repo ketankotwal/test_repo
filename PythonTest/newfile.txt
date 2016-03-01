@@ -1,0 +1,63 @@
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+import time
+import logging
+from kazoo.client import KazooClient
+
+class PyZookeeper(FileSystemEventHandler):
+    
+    global first_zk
+
+    @staticmethod
+    def write_data(new_data):
+        first_zk.ensure_path("/zookeeper/quota/test2")
+        first_zk.set("/zookeeper/quota/test2", new_data)
+        print "Updated new data"
+
+    def on_any_event(self, event):
+        #FileSystemEventHandler.on_any_event(self, event)
+        print event.event_type
+        print event.is_directory
+        print event.src_path
+        contents = open(event.src_path, 'r').read()
+        #print contents
+        print "\n"
+        print "Writing data to Zookeeper node..."
+        PyZookeeper.write_data(contents)
+        print "\nFinished writing data to node."
+    
+    def dispatch(self, event):
+        #FileSystemEventHandler.dispatch(self, event)
+        print "\n"
+        print "------------------- START -----------------------"
+        PyZookeeper.on_any_event(self, event)
+        print "------------------- END -----------------------"
+        print "\n"
+    
+   
+
+print "Starting execution.."
+        
+logging.basicConfig()
+first_zk = KazooClient(hosts='127.0.0.1:2181')
+first_zk.start()
+print "Connected to zookeeper 1.."
+
+
+
+
+path='.';
+observer = Observer()
+eventHandler = PyZookeeper()
+observer.schedule(eventHandler, path, True)
+observer.start()
+
+print "Added watcher for file.."
+    
+try:
+    while True:
+        print "Waiting for changes.."
+        time.sleep(10)
+except KeyboardInterrupt:
+    first_zk.stop()
+

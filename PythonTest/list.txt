@@ -1,0 +1,7 @@
+/etc/passwd
+/etc/shadow
+/etc/pam.d/system-auth
+/etc/pam.d/sshd
+/etc/pam.d/login
+/etc/pam.d
+/etc/pam.d/xyz
