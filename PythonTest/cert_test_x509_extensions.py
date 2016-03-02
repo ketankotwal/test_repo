@@ -3,6 +3,10 @@ from pyasn1.codec.der import decoder as der_decoder
 from subj_alt_name import SubjectAltName
 from pyasn1_modules.rfc2459 import CRLDistPointsSyntax , AuthorityInfoAccessSyntax, AccessDescription
 import urllib
+from cryptography import x509
+from cryptography.x509.oid import ObjectIdentifier
+
+oid= x509.oid
 
 certname = 'cert.cer'
 certfile = open('certs/'+ certname, 'r').read()
@@ -18,7 +22,7 @@ for i in range(cert.get_extension_count()):
     ext = cert.get_extension(i)
     ext_name = ext.get_short_name()
     print ext_name
-    if ext_name == 'subjectAltName':
+    if ext_name == x509.oid.ExtensionOID.SUBJECT_ALTERNATIVE_NAME._name:
         # PyOpenSSL returns extension data in ASN.1 encoded form
         ext_dat = ext.get_data()
         decoded_dat = der_decoder.decode(ext_dat, 
@@ -36,7 +40,7 @@ for i in range(cert.get_extension_count()):
                     dns_name.append(san)
     
     
-    if ext_name == 'crlDistributionPoints':
+    if ext_name == x509.oid.ExtensionOID.CRL_DISTRIBUTION_POINTS._name:
         # PyOpenSSL returns extension data in ASN.1 encoded form
         ext_dat = ext.get_data()
         decoded_dat = der_decoder.decode(ext_dat, 
@@ -67,7 +71,7 @@ for i in range(cert.get_extension_count()):
                     #dns_name.append(san)
     
     authInfoAccessSyntax = AuthorityInfoAccessSyntax()
-    if ext_name == 'authorityInfoAccess':
+    if ext_name == x509.oid.ExtensionOID.AUTHORITY_INFORMATION_ACCESS._name:
         # PyOpenSSL returns extension data in ASN.1 encoded form
         ext_dat = ext.get_data()
         decoded_dat = der_decoder.decode(ext_dat, 
@@ -79,9 +83,32 @@ for i in range(cert.get_extension_count()):
                 for entry in range(len(authInfoAccess)):
                     accessDescription = authInfoAccess.getComponentByPosition(entry)
                     accessMethod = str(accessDescription.getComponentByName('accessMethod'))
-                    ocsp_oid = '1.3.6.1.5.5.7.48.1'
+                    ocsp_oid = x509.oid.AuthorityInformationAccessOID.OCSP.dotted_string
                     if  ocsp_oid == accessMethod:
                         ocsp_url_generalname = accessDescription.getComponentByName('accessLocation')
                         ocsp_url = ocsp_url_generalname.getComponentByName('uniformResourceIdentifier')
                         print '\t' + str(ocsp_url)
-                    
+
+
+
+print oid.AuthorityInformationAccessOID.OCSP
+print oid.AuthorityInformationAccessOID.CA_ISSUERS
+print '\n'
+print oid.ExtensionOID.AUTHORITY_INFORMATION_ACCESS
+print oid.ExtensionOID.CRL_DISTRIBUTION_POINTS
+print oid.ExtensionOID.SUBJECT_ALTERNATIVE_NAME
+print oid.ExtensionOID.SUBJECT_ALTERNATIVE_NAME._name
+print oid.ExtensionOID.SUBJECT_ALTERNATIVE_NAME.dotted_string
+eku_dict = oid.ExtendedKeyUsageOID.__dict__
+eku_vals = eku_dict.values()
+#print len(eku_vals)
+print '\n\n'
+for eku_index in range(len(eku_vals)):
+    eku_oid = eku_vals[eku_index]
+    #print type(eku_oid)
+    if isinstance(eku_oid, ObjectIdentifier):
+        print '\t\t' + eku_oid._name + "\t:  " + eku_oid.dotted_string
+    
+#print dir(oid.ExtensionOID.EXTENDED_KEY_USAGE)
+
+#print OpenSSL.__dict__

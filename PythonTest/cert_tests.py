@@ -27,12 +27,22 @@ def show_cert(certname):
     print lib.EVP_PKEY_RSA
     print lib.EVP_PKEY_DSA
     print lib.EVP_PKEY_EC
+    print lib.EVP_PKEY_asn1_get0_info()
     
     #print inspect.getargspec(lib.EVP_PKEY_get_attr)
     #print lib.EVP_PKEY_get_attr(key, None)
     #print lib.EVP_get_digestbyname(408)
 
 c = OpenSSL.crypto
+
+from cryptography.hazmat.bindings.openssl.binding import Binding
+lib = Binding().lib
+print lib.EVP_PKEY_RSA
+print lib.EVP_PKEY_DSA
+print lib.EVP_PKEY_EC
+print lib.EVP_PKEY_get_attr_by_NID(408)
+exit()
+    
 #dir(c)
 #print lib.EC_GROUP_get_curve_name(lib.EVP_PKEY_EC)
 #ENGINE_get_name

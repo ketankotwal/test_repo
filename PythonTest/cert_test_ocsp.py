@@ -1,7 +1,6 @@
 from oscrypto import asymmetric
 from ocspbuilder import OCSPRequestBuilder
 from pyasn1_modules.rfc2560 import OCSPResponse, BasicOCSPResponse
-from OpenSSL import crypto
 import OpenSSL
 
 
