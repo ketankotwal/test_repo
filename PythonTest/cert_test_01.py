@@ -3,6 +3,12 @@ from pyasn1.codec.der import decoder
 from pyasn1_modules.rfc2459 import GeneralNames
 from pyasn1.type import univ
 #from ndg.httpsclient.subj_alt_name import SubjectAltName
+import OpenSSL
+
+#print OpenSSL.__dict__
+print OpenSSL
+
+exit()
 
 substrate = pem.readPemFromFile(open('certs/cert.cer'))
 cert = decoder.decode(substrate, asn1Spec=rfc2459.Certificate())[0]
