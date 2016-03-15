@@ -115,15 +115,15 @@ setup(
     package_dir={'ndg.httpsclient': 'ndg/httpsclient'},
     package_data={
         'ndg.httpsclient': [
-            'test/README', 
+            'test/README',
             'test/scripts/*.sh',
             'test/pki/localhost.*',
             'test/pki/ca/*.0'
             ],
     },
-    install_requires = ['PyOpenSSL'],
-    extras_require = {'subjectAltName_support': 'pyasn1'},
-    classifiers = [
+    install_requires=['PyOpenSSL'],
+    extras_require={'subjectAltName_support': 'pyasn1'},
+    classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Environment :: Web Environment',
@@ -143,8 +143,8 @@ setup(
         'Topic :: System :: Systems Administration :: Authentication/Directory',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
-    zip_safe = False,
-    entry_points = {
+    zip_safe=False,
+    entry_points={
         'console_scripts': ['ndg_httpclient = ndg.httpsclient.utils:main',
                             ],
         }

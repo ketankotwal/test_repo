@@ -1,7 +1,7 @@
 # Read ASN.1/PEM X.509 certificates on stdin, parse each into plain text,
 # then build substrate from it
 import sys, string, base64
-from pyasn1.type import tag,namedtype,namedval,univ,constraint,char,useful
+from pyasn1.type import tag, namedtype, namedval, univ, constraint, char, useful
 from pyasn1.codec.der import decoder, encoder
 from pyasn1 import error
 
@@ -17,7 +17,7 @@ class DirectoryString(univ.Choice):
         namedtype.NamedType('universalString', char.UniversalString().subtype(subtypeSpec=constraint.ValueSizeConstraint(1, MAX))),
         namedtype.NamedType('utf8String', char.UTF8String().subtype(subtypeSpec=constraint.ValueSizeConstraint(1, MAX))),
         namedtype.NamedType('bmpString', char.BMPString().subtype(subtypeSpec=constraint.ValueSizeConstraint(1, MAX))),
-        namedtype.NamedType('ia5String', char.IA5String().subtype(subtypeSpec=constraint.ValueSizeConstraint(1, MAX))) # hm, this should not be here!? XXX
+        namedtype.NamedType('ia5String', char.IA5String().subtype(subtypeSpec=constraint.ValueSizeConstraint(1, MAX)))  # hm, this should not be here!? XXX
         )
 
 class AttributeValue(DirectoryString): pass

@@ -233,13 +233,13 @@ class SSLSocket(object):
         # Optimisation
         _buf_size = self.buf_size
 
-        i=0
+        i = 0
         stream = BytesIO()
         startTime = datetime.utcnow()
         try:
             dat = self.__ssl_conn.recv(_buf_size)
             while dat:
-                i+=1
+                i += 1
                 stream.write(dat)
                 dat = self.__ssl_conn.recv(_buf_size)
 

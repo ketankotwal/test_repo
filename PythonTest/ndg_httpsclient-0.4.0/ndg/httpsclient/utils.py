@@ -180,7 +180,7 @@ def open_url(url, config, data=None, handlers=None):
 
     if config.debug:
         http_handler = HTTPHandler_(debuglevel=debuglevel)
-        https_handler = HTTPSContextHandler(config.ssl_context, 
+        https_handler = HTTPSContextHandler(config.ssl_context,
                                             debuglevel=debuglevel)
         handlers.extend([http_handler, https_handler])
         
@@ -274,7 +274,7 @@ def _url_as_string(url):
     elif isinstance(url, str):
         return url
     else:
-        raise TypeError("Expected type %r or %r" %
+        raise TypeError("Expected type %r or %r" % 
                         (str, Request_))
 
 
@@ -318,11 +318,11 @@ def main():
     parser.add_option("-k", "--private-key", dest="key_file", metavar="FILE",
                       default=None,
                       help="Private key file - defaults to the certificate file")
-    parser.add_option("-t", "--ca-certificate-dir", dest="ca_dir", 
+    parser.add_option("-t", "--ca-certificate-dir", dest="ca_dir",
                       metavar="PATH",
                       default=None,
                       help="Trusted CA certificate file directory")
-    parser.add_option("-d", "--debug", action="store_true", dest="debug", 
+    parser.add_option("-d", "--debug", action="store_true", dest="debug",
                       default=False,
                       help="Print debug information.")
     parser.add_option("-p", "--post-data-file", dest="data_file",
@@ -330,14 +330,14 @@ def main():
                       help="POST data file")
     parser.add_option("-f", "--fetch", dest="output_file", metavar="FILE",
                       default=None, help="Output file")
-    parser.add_option("-n", "--no-verify-peer", action="store_true", 
+    parser.add_option("-n", "--no-verify-peer", action="store_true",
                       dest="no_verify_peer", default=False,
                       help="Skip verification of peer certificate.")
-    parser.add_option("-a", "--basicauth", dest="basicauth", 
+    parser.add_option("-a", "--basicauth", dest="basicauth",
                       metavar="USER:PASSWD",
                       default=None,
                       help="HTTP authentication credentials")
-    parser.add_option("--header", action="append", dest="headers", 
+    parser.add_option("--header", action="append", dest="headers",
                       metavar="HEADER: VALUE",
                       help="Add HTTP header to request")
     (options, args) = parser.parse_args()
@@ -390,16 +390,16 @@ def main():
                                                     cert_file,
                                                     None,
                                                     ca_dir,
-                                                    verify_peer, 
+                                                    verify_peer,
                                                     url)
 
-    config = Configuration(ssl_context, 
+    config = Configuration(ssl_context,
                            options.debug,
                            http_basicauth=http_basicauth,
                            headers=headers)
     if options.output_file:
         return_code, return_message = fetch_from_url_to_file(
-                                                      url, 
+                                                      url,
                                                       config,
                                                       options.output_file,
                                                       data)[:2]
@@ -409,6 +409,6 @@ def main():
         print(data)
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     logging.basicConfig()
     main()

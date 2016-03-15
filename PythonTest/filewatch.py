@@ -9,23 +9,23 @@ class FileWatchHandler(FileSystemEventHandler):
     
     
     def on_modified(self, event):
-        #FileSystemEventHandler.on_modified(self, event)
+        # FileSystemEventHandler.on_modified(self, event)
         print event
         
     def on_any_event(self, event):
-        #FileSystemEventHandler.on_any_event(self, event)
+        # FileSystemEventHandler.on_any_event(self, event)
         print event.event_type
         print event.is_directory
         print event.src_path
         contents = open(event.src_path, 'r').read()
-        #print contents
+        # print contents
         print "\n"
         print "Writing data to Zookeeper node..."
         ZkTest.write_data(contents)
         print "\nFinished writing data to node."
     
     def dispatch(self, event):
-        #FileSystemEventHandler.dispatch(self, event)
+        # FileSystemEventHandler.dispatch(self, event)
         print "\n"
         print "------------------- START -----------------------"
         FileWatchHandler.on_any_event(self, event)
@@ -34,8 +34,8 @@ class FileWatchHandler(FileSystemEventHandler):
         
         
 logging.basicConfig()
-#path='E:/DEV_ENV/Tools/zookeeper/zookeeper-3.4.6/bin/test.txt';
-path='.';
+# path='E:/DEV_ENV/Tools/zookeeper/zookeeper-3.4.6/bin/test.txt';
+path = '.';
 observer = Observer()
 eventHandler = FileWatchHandler()
 observer.schedule(eventHandler, path, True)

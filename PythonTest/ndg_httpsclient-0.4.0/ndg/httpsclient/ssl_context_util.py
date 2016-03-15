@@ -85,7 +85,7 @@ def make_ssl_context(key_file=None, cert_file=None, pem_file=None, ca_dir=None,
     return ssl_context
 
 
-def set_peer_verification_for_url_hostname(ssl_context, url, 
+def set_peer_verification_for_url_hostname(ssl_context, url,
                                            if_verify_enabled=False):
     '''Convenience routine to set peer verification callback based on
     ServerSSLCertVerification class'''

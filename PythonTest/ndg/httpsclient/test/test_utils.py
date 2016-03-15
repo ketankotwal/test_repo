@@ -35,7 +35,7 @@ class TestUtilsModule(unittest.TestCase):
     def test03_open_url(self):
         config = Configuration(SSL.Context(SSL.TLSv1_METHOD), True)
         res = open_url(Constants.TEST_URI, config)
-        self.assertEqual(res[0], 200, 
+        self.assertEqual(res[0], 200,
                          'open_url for %r failed' % Constants.TEST_URI)
         
     def test04__should_use_proxy(self):
@@ -45,11 +45,11 @@ class TestUtilsModule(unittest.TestCase):
         else:
             no_proxy = None
                
-        self.assertTrue(_should_use_proxy(Constants.TEST_URI), 
+        self.assertTrue(_should_use_proxy(Constants.TEST_URI),
                         'Expecting use proxy = True')
         
         os.environ['no_proxy'] = 'localhost,localhost.localdomain'
-        self.assertFalse(_should_use_proxy(Constants.TEST_URI), 
+        self.assertFalse(_should_use_proxy(Constants.TEST_URI),
                          'Expecting use proxy = False')
         
         if no_proxy is not None:

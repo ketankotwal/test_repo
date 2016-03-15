@@ -59,7 +59,7 @@ class HTTPSConnection(HTTPConnection):
         if ssl_context is not None:
             if not isinstance(ssl_context, SSL.Context):
                 raise TypeError('Expecting OpenSSL.SSL.Context type for "'
-                                'ssl_context" keyword; got %r instead' %
+                                'ssl_context" keyword; got %r instead' % 
                                 ssl_context)
                 
             self.ssl_context = ssl_context
@@ -70,7 +70,7 @@ class HTTPSConnection(HTTPConnection):
         if getattr(self, 'ssl_context', None):
             if not isinstance(self.ssl_context, SSL.Context):
                 raise TypeError('Expecting OpenSSL.SSL.Context type for "'
-                                'ssl_context" attribute; got %r instead' %
+                                'ssl_context" attribute; got %r instead' % 
                                 self.ssl_context)
             ssl_context = self.ssl_context
         else:
@@ -112,7 +112,7 @@ class HTTPSContextHandler(AbstractHTTPHandler):
         if ssl_context is not None:
             if not isinstance(ssl_context, SSL.Context):
                 raise TypeError('Expecting OpenSSL.SSL.Context type for "'
-                                'ssl_context" keyword; got %r instead' %
+                                'ssl_context" keyword; got %r instead' % 
                                 ssl_context)
             self.ssl_context = ssl_context
         else:

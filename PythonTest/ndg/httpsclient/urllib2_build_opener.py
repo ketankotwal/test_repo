@@ -13,17 +13,17 @@ import sys
 # Py 2 <=> 3 compatibility for class type checking
 if sys.version_info[0] > 2:
     class_type_ = type
-    from urllib.request import (ProxyHandler, UnknownHandler, 
-                                HTTPDefaultErrorHandler, FTPHandler, 
-                                FileHandler, HTTPErrorProcessor, 
-                                HTTPHandler, OpenerDirector, 
+    from urllib.request import (ProxyHandler, UnknownHandler,
+                                HTTPDefaultErrorHandler, FTPHandler,
+                                FileHandler, HTTPErrorProcessor,
+                                HTTPHandler, OpenerDirector,
                                 HTTPRedirectHandler)
 else:
     import types
     class_type_ = types.ClassType
     
-    from urllib2 import (ProxyHandler, UnknownHandler, HTTPDefaultErrorHandler, 
-                         FTPHandler, FileHandler, HTTPErrorProcessor, 
+    from urllib2 import (ProxyHandler, UnknownHandler, HTTPDefaultErrorHandler,
+                         FTPHandler, FileHandler, HTTPErrorProcessor,
                          HTTPHandler, OpenerDirector, HTTPRedirectHandler)
 
 from ndg.httpsclient.https import HTTPSContextHandler

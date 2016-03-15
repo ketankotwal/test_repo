@@ -9,7 +9,7 @@ class NodeWatch:
     global nodepath, nodepath_hash
     global nodewatch
     
-    #nodewatch = NodeWatch()
+    # nodewatch = NodeWatch()
     nodepath = "/zookeeper/quota/test3"
     nodepath_hash = "/zookeeper/quota/test3_hash"
     second_zk = KazooClient(hosts='127.0.0.1:2182')
@@ -42,7 +42,7 @@ class NodeWatch:
     def print_new_data(data, stat):
         print '\n'
         print data        
-        #NodeWatch.compare_hash(data)
+        # NodeWatch.compare_hash(data)
         time.sleep(5)
         print "Writing to dest file..."
         newfile = open('destination/dest.txt', 'w')
@@ -59,8 +59,8 @@ class NodeWatch:
             print "Files successfully synced !"
         else:
             print "Error syncing files !"
-        #print stat.version
-        #print stat.mtime
+        # print stat.version
+        # print stat.mtime
 
 print "Starting execution.."
 

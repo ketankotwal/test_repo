@@ -7,9 +7,9 @@ class User:
     password = 2
     
     def __init__(self):
-        self._username   = UserConstants.DEFAULT_USERNAME
-        self._password   = UserConstants.DEFAULT_PASSWORD  
-        self.group       = UserConstants.DEFAULT_GROUP
+        self._username = UserConstants.DEFAULT_USERNAME
+        self._password = UserConstants.DEFAULT_PASSWORD  
+        self.group = UserConstants.DEFAULT_GROUP
     
     @property
     def get_username(self):

@@ -30,7 +30,7 @@ class PyZookeeper(FileSystemEventHandler):
         return hashedData
 
     def on_any_event(self, event):
-        #FileSystemEventHandler.on_any_event(self, event)
+        # FileSystemEventHandler.on_any_event(self, event)
         print event.event_type
         print event.is_directory
         print event.src_path
@@ -38,7 +38,7 @@ class PyZookeeper(FileSystemEventHandler):
         hashedContents = PyZookeeper.generate_hash(contents)
         print "Hash :"
         print hashedContents
-        #print contents
+        # print contents
         print "\n"
         print "Writing data & hash to Zookeeper node..."
         PyZookeeper.write_hash(hashedContents)
@@ -46,7 +46,7 @@ class PyZookeeper(FileSystemEventHandler):
         print "\nFinished writing data & hash to node."
     
     def dispatch(self, event):
-        #FileSystemEventHandler.dispatch(self, event)
+        # FileSystemEventHandler.dispatch(self, event)
         print "\n"
         print "------------------- START -----------------------"
         PyZookeeper.on_any_event(self, event)
@@ -65,7 +65,7 @@ first_zk = KazooClient(hosts='127.0.0.1:2181')
 first_zk.start()
 print "Connected to zookeeper 1.."
 
-path='./source/src.txt';
+path = './source/src.txt';
 observer = Observer()
 eventHandler = PyZookeeper()
 observer.schedule(eventHandler, path, True)

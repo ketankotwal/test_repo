@@ -26,7 +26,7 @@ class ZkTest:
         print '\n'
         print data   
         print stat.version
-        #print stat.mtime
+        # print stat.mtime
         
     @staticmethod
     def write_data(new_data):
@@ -38,11 +38,11 @@ class ZkTest:
 zktest = ZkTest()
 ZkTest.write_data("Dummy data")
 ZkTest.read('/zookeeper/quota/test2')
-#zktest.read('/zookeeper/quota/test2')
+# zktest.read('/zookeeper/quota/test2')
 
-#while True:
+# while True:
 #    time.sleep(2)
     
-#zk.stop()
+# zk.stop()
     
     

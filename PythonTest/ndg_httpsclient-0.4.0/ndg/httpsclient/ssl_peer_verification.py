@@ -181,7 +181,7 @@ class ServerSSLCertVerification(object):
             if ext_name == cls.SUBJ_ALT_NAME_EXT_NAME:
                 # PyOpenSSL returns extension data in ASN.1 encoded form
                 ext_dat = ext.get_data()
-                decoded_dat = der_decoder.decode(ext_dat, 
+                decoded_dat = der_decoder.decode(ext_dat,
                                                  asn1Spec=general_names)
                 
                 for name in decoded_dat:
